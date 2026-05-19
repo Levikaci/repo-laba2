@@ -1,0 +1,68 @@
+﻿<Window x:Class="ChemistryApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="" Height="650" Width="1000"
+        WindowStartupLocation="CenterScreen" Background="#F0F4F8">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ЛЕВАЯ ПАНЕЛЬ -->
+        <Border Grid.Column="0" Background="White" CornerRadius="10" Padding="15">
+            <StackPanel>
+                <TextBlock Text="Химия" FontWeight="Bold" FontSize="18" Margin="0,0,0,0"/>
+                <ListBox x:Name="TopicsList" DisplayMemberPath="Title" Background="Transparent" BorderThickness="0" 
+                         SelectionChanged="TopicsList_SelectionChanged" Margin="0,0,0,15"/>
+                <TextBlock Text="Поиск элемента" FontWeight="Bold" FontSize="16" Margin="0,10,0,5"/>
+                <TextBox x:Name="SearchBox" ToolTip="H, Водород или 1" Margin="0,0,0,5" Width="188"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="Найти" Click="Search_Click" Width="70" Background="#4CAF50" Foreground="White" Margin="0,0,5,0"/>
+                    <Button Content="✕" Click="Clear_Click" Width="30" Background="#f44336" Foreground="White"/>
+                </StackPanel>
+                <ListBox x:Name="ResultsList" DisplayMemberPath="Display" Height="100" 
+                         SelectionChanged="ResultsList_SelectionChanged" Background="#FAFAFA"/>
+
+                <Button Content="Темы" Click="ShowTopics_Click" Margin="0,5,0,10" 
+        Padding="8" Background="#6C757D" Foreground="White"/>
+                <Button Content="Таблица Менделеева" Click="ShowTable_Click" Margin="0,10,0,0" Padding="8" Background="#2196F3" Foreground="White"/>
+            </StackPanel>
+        </Border>
+
+        <!-- ПРАВАЯ ЧАСТЬ -->
+        <Border Grid.Column="1" Background="White" CornerRadius="10" Padding="20" Margin="10,0,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock x:Name="TopicTitle" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock x:Name="TopicContent" TextWrapping="Wrap" FontSize="14" LineHeight="22"/>
+                    <Separator x:Name="SeparatorEl" Margin="0,20" Visibility="Collapsed"/>
+                    <StackPanel x:Name="ElementInfo" Visibility="Collapsed">
+                        <TextBlock Text="ℹ️ Элемент" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                        <StackPanel Margin="0,5,0,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="Атомный номер: " FontWeight="SemiBold" Width="120"/>
+                                <TextBlock x:Name="ElNum"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="Символ: " FontWeight="SemiBold" Width="120"/>
+                                <TextBlock x:Name="ElSym" FontSize="16" FontWeight="Bold"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="Название: " FontWeight="SemiBold" Width="120"/>
+                                <TextBlock x:Name="ElName"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                <TextBlock Text="Масса: " FontWeight="SemiBold" Width="120"/>
+                                <TextBlock x:Name="ElMass"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <Border x:Name="ErrorBorder" Background="#ffebee" CornerRadius="5" Padding="10" Margin="0,15,0,0" Visibility="Collapsed">
+                        <TextBlock x:Name="ErrorMsg" Foreground="#c62828"/>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>
